@@ -3,11 +3,35 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const pathname = usePathname();
+  const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setMounted(true);
+      const isDark = document.documentElement.classList.contains('dark');
+      setTheme(isDark ? 'dark' : 'light');
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -52,9 +76,25 @@ const Navbar = () => {
         </ul>
 
         {/* Action Button */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
+          {/* Theme Toggler */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white transition-all duration-300 pointer-events-auto cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F4B400] relative"
+            aria-label="Toggle Theme"
+          >
+            {mounted ? (
+              theme === 'light' ? (
+                <Moon className="w-5 h-5 transition-transform duration-300 hover:rotate-12" />
+              ) : (
+                <Sun className="w-5 h-5 text-secondary transition-transform duration-300 hover:rotate-45" />
+              )
+            ) : (
+              <div className="w-5 h-5 rounded-full bg-white/20 animate-pulse" />
+            )}
+          </button>
+
           <Button 
-          
             variant="outline" 
             size={"lg"}
             className="rounded-full bg-white text-primary hover:bg-transparent hover:text-white border-white transition-all duration-300 font-semibold px-6 hidden sm:flex"
