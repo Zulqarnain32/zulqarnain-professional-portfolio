@@ -2,26 +2,26 @@
 
 import React from "react";
 import Link from "next/link";
-import { Palette, Smartphone, Monitor, Play, ArrowRight } from "lucide-react";
+import { Code2, Server, Database, Play, ArrowRight } from "lucide-react";
 
 const servicesData = [
   {
-    icon: <Palette size={34} className="text-primary transition-transform duration-300 group-hover/card:scale-110" />,
-    title: "UI/UX Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ...",
-    link: "/services#ui-ux",
+    icon: <Code2 size={34} className="text-primary transition-transform duration-300 group-hover/card:scale-110" />,
+    title: "Frontend Development",
+    description: "Building responsive, modern, and highly interactive user interfaces using React, Next.js, and Tailwind CSS.",
+    link: "/services#frontend",
   },
   {
-    icon: <Smartphone size={34} className="text-primary transition-transform duration-300 group-hover/card:scale-110" />,
-    title: "Application Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ...",
-    link: "/services#app-design",
+    icon: <Server size={34} className="text-primary transition-transform duration-300 group-hover/card:scale-110" />,
+    title: "Backend Development",
+    description: "Designing robust server-side architecture, RESTful/GraphQL APIs, and scalable microservices using Node.js.",
+    link: "/services#backend",
   },
   {
-    icon: <Monitor size={34} className="text-primary transition-transform duration-300 group-hover/card:scale-110" />,
-    title: "Website Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ...",
-    link: "/services#website-design",
+    icon: <Database size={34} className="text-primary transition-transform duration-300 group-hover/card:scale-110" />,
+    title: "Database & API Design",
+    description: "Structuring secure databases with PostgreSQL and MongoDB, implementing caching with Redis, and Prisma ORM.",
+    link: "/services#database",
   },
 ];
 

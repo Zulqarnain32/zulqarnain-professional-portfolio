@@ -123,7 +123,7 @@ const Hero = () => {
 
           {/* Subtitle / Paragraph */}
           <p className="text-foreground/75 text-sm sm:text-base md:text-lg max-w-xl font-normal leading-relaxed transition-colors duration-300">
-            I&apos;m an experienced MERN Stack Developer, collaborating with various clients and startups to build high-performance, user-friendly, and visually stunning web applications.
+            I&apos;m an experienced <span className="text-secondary">MERN / PERN</span> Stack Developer, collaborating with various clients and startups to build high-performance, user-friendly, and visually stunning web applications.
           </p>
 
           {/* Button Row */}
@@ -173,43 +173,39 @@ const Hero = () => {
         <div className="absolute inset-0 bg-secondary rotate-1 shadow-md origin-center flex items-center overflow-hidden h-20">
           <div className="custom-marquee flex items-center whitespace-nowrap text-secondary-foreground font-bold text-xl sm:text-2xl md:text-3xl tracking-wider py-3">
             <span className="flex items-center">
-              <span className="mx-6">App Design</span>
+              <span className="mx-6">React</span>
               <Asterisk />
-              <span className="mx-6">Website Design</span>
+              <span className="mx-6">Next.js</span>
               <Asterisk />
-              <span className="mx-6">Dashboard</span>
+              <span className="mx-6">Node.js</span>
               <Asterisk />
-              <span className="mx-6">Wireframe</span>
+              <span className="mx-6">TypeScript</span>
               <Asterisk />
-            </span>
-            <span className="flex items-center">
-              <span className="mx-6">App Design</span>
+              <span className="mx-6">MongoDB</span>
               <Asterisk />
-              <span className="mx-6">Website Design</span>
+              <span className="mx-6">PostgreSQL</span>
               <Asterisk />
-              <span className="mx-6">Dashboard</span>
+              <span className="mx-6">Redux</span>
               <Asterisk />
-              <span className="mx-6">Wireframe</span>
+              <span className="mx-6">Tailwind CSS</span>
               <Asterisk />
             </span>
             <span className="flex items-center">
-              <span className="mx-6">App Design</span>
+              <span className="mx-6">React</span>
               <Asterisk />
-              <span className="mx-6">Website Design</span>
+              <span className="mx-6">Next.js</span>
               <Asterisk />
-              <span className="mx-6">Dashboard</span>
+              <span className="mx-6">Node.js</span>
               <Asterisk />
-              <span className="mx-6">Wireframe</span>
+              <span className="mx-6">TypeScript</span>
               <Asterisk />
-            </span>
-            <span className="flex items-center">
-              <span className="mx-6">App Design</span>
+              <span className="mx-6">MongoDB</span>
               <Asterisk />
-              <span className="mx-6">Website Design</span>
+              <span className="mx-6">PostgreSQL</span>
               <Asterisk />
-              <span className="mx-6">Dashboard</span>
+              <span className="mx-6">Redux</span>
               <Asterisk />
-              <span className="mx-6">Wireframe</span>
+              <span className="mx-6">Tailwind CSS</span>
               <Asterisk />
             </span>
           </div>
