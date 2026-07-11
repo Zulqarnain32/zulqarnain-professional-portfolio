@@ -77,18 +77,18 @@ const Services = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-foreground/75 text-sm md:text-base leading-relaxed mb-6 font-normal">
+              <p className="text-foreground/75 text-sm md:text-base leading-relaxed font-normal">
                 {service.description}
               </p>
 
               {/* Learn More Link */}
-              <Link 
+              {/* <Link 
                 href={service.link}
                 className="mt-auto inline-flex items-center gap-2 text-secondary font-bold text-sm md:text-base group/link transition-colors duration-300 hover:text-secondary/80"
               >
                 Learn more
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/card:translate-x-2" />
-              </Link>
+              </Link> */}
             </div>
           ))}
         </div>

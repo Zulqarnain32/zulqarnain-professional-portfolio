@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-
+import { Play } from "lucide-react";
 const Asterisk = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 mx-4 inline-block text-black">
     <path d="M12 2a1 1 0 0 1 1 1v7.59l5.36-5.36a1 1 0 0 1 1.42 1.42L14.41 12l5.36 5.36a1 1 0 0 1-1.42 1.42L13 14.41V22a1 1 0 0 1-2 0v-7.59l-5.36 5.36a1 1 0 0 1-1.42-1.42L9.59 12 4.23 6.64a1 1 0 0 1 1.42-1.42L11 9.59V3a1 1 0 0 1 1-1z" />
@@ -107,7 +107,7 @@ const Hero = () => {
             <span className="relative inline-block text-secondary">
               Zulqarnain,
               {/* Offset underline matching the premium reference vibe */}
-              <span className="absolute bottom-[4px] left-0 w-full h-[5px] bg-secondary rounded-full"></span>
+              <span className="hidden lg:block absolute bottom-[4px] left-0 w-full h-[5px] bg-secondary rounded-full"></span>
             </span>
             <br />
             {mounted ? (
@@ -134,10 +134,10 @@ const Hero = () => {
                 View My Portfolio
               </div>
               <div className="w-9 h-9 bg-background rounded-full flex items-center justify-center ml-3 mr-2 shadow-sm transition-transform duration-300 group-hover:translate-x-1">
-                {/* Play icon */}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-primary ml-0.5">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+             
+                <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm transition-transform duration-300 group-hover:translate-x-1">
+                  <Play className="w-4 h-4 text-primary fill-primary" />
+                </div>
               </div>
             </div>
 

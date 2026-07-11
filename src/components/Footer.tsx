@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-
+import {Play } from "lucide-react";
 const GithubIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -40,12 +40,62 @@ const SendIcon = () => (
 );
 
 const Footer = () => {
+  const [email, setEmail] = React.useState("");
+  const [toast, setToast] = React.useState<{
+    message: string;
+    type: "success" | "error";
+    visible: boolean;
+  }>({
+    message: "",
+    type: "success",
+    visible: false,
+  });
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) {
+      setToast({
+        message: "Please enter an email address.",
+        type: "error",
+        visible: true,
+      });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setToast({
+        message: "Please enter a valid email address.",
+        type: "error",
+        visible: true,
+      });
+      return;
+    }
+
+    setToast({
+      message: "Successfully subscribed to our newsletter!",
+      type: "success",
+      visible: true,
+    });
+    setEmail("");
+  };
+
+  React.useEffect(() => {
+    if (toast.visible) {
+      const timer = setTimeout(() => {
+        setToast((prev) => ({ ...prev, visible: false }));
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast.visible]);
+
   const socialLinks = [
     { icon: <GithubIcon />, href: "https://github.com/zulqarnainoraxtech", name: "GitHub" },
     { icon: <LinkedinIcon />, href: "https://www.linkedin.com/in/zulqarnain-chohan/", name: "LinkedIn" },
     { icon: <TwitterIcon />, href: "https://x.com/Zulqarnain_dev", name: "Twitter" },
-    { icon: <WhatsappIcon />, href: "https://youtube.com/channel/UC3_V2Q9y_G1m-R7d-o3d7sQ", name: "Whatsapp" },
-    { icon: <InstagramIcon />, href: "https://www.instagram.com/zulqarnain_dev/", name: "Instagram" },
+    { icon: <WhatsappIcon />, href: "https://wa.me/03030128036", name: "Whatsapp" },
+    { icon: <InstagramIcon />, href: "https://www.instagram.com/zulqarnainchohan10/", name: "Instagram" },
   ];
 
   const navLinks = [
@@ -76,16 +126,11 @@ const Footer = () => {
               <div className="bg-primary text-white font-semibold px-6 py-3 rounded-full text-sm md:text-base transition-colors hover:bg-primary/95">
                 View All Blogs
               </div>
-              <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center ml-3 mr-1 shadow-sm transition-transform duration-300 group-hover:translate-x-1">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 24 24" 
-                  fill="currentColor" 
-                  className="w-4 h-4 text-primary"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+              {/* <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center ml-3 mr-1 shadow-sm transition-transform duration-300 group-hover:translate-x-1"> */}
+                <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center ml-3 mr-1 shadow-sm transition-transform duration-300 group-hover:translate-x-1">
+                <Play className="w-4 h-4 text-primary fill-primary" />
               </div>
+              {/* </div> */}
             </Link>
           </div>
         </div>
@@ -156,7 +201,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://www.zulqarnain.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary dark:hover:text-secondary transition-colors">
+                <a href="https://zulqarnain-professional-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-primary dark:hover:text-secondary transition-colors">
                   www.zulqarnain.com
                 </a>
               </li>
@@ -166,7 +211,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="leading-relaxed">
-                Vital Homes DD Block,<br />Lahore
+                Pak Arab Phase 2, Lahore
               </li>
             </ul>
           </div>
@@ -179,18 +224,20 @@ const Footer = () => {
             
             {/* Newsletter input container */}
             <form 
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubscribe}
               className="flex items-center bg-custom-gray/60 dark:bg-custom-gray/40 border border-border rounded-xl p-1.5 w-full focus-within:border-primary/50 dark:focus-within:border-secondary/50 transition-colors duration-300"
             >
               <input 
                 type="email" 
                 placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-transparent text-foreground placeholder:text-foreground/45 px-3 py-2.5 flex-1 focus:outline-none text-sm md:text-base min-w-0"
                 required
               />
               <button 
                 type="submit"
-                className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/95 transition-colors duration-300 flex-shrink-0"
+                className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center hover:bg-primary/95 transition-colors duration-300 shrink-0"
                 aria-label="Subscribe"
               >
                 <SendIcon />
@@ -199,6 +246,52 @@ const Footer = () => {
           </div>
 
         </div>
+      </div>
+
+      {/* Toast Notification */}
+      <div 
+        className={`fixed top-6 right-6 z-50 flex items-center gap-3 px-5 py-4 rounded-2xl shadow-xl border backdrop-blur-md transition-all duration-500 transform ${
+          toast.visible 
+            ? "opacity-100 translate-y-0 scale-100" 
+            : "opacity-0 translate-y-4 scale-95 pointer-events-none"
+        } ${
+          toast.type === "success"
+            ? "bg-secondary/95 text-secondary-foreground border-secondary/20"
+            : "bg-red-500/95 text-white border-red-500/20 dark:bg-red-600/90"
+        }`}
+      >
+        {toast.type === "success" ? (
+          <div className="w-6 h-6 rounded-full bg-secondary-foreground/10 flex items-center justify-center text-secondary-foreground">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        ) : (
+          <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-white">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        )}
+        <div className="flex flex-col">
+          <p className="text-sm font-semibold">{toast.type === "success" ? "Success" : "Error"}</p>
+          <p className={`text-xs font-medium ${toast.type === "success" ? "text-secondary-foreground/90" : "text-white/90"}`}>
+            {toast.message}
+          </p>
+        </div>
+        <button 
+          onClick={() => setToast(prev => ({ ...prev, visible: false }))}
+          className={`ml-4 transition-colors duration-200 cursor-pointer ${
+            toast.type === "success"
+              ? "text-secondary-foreground/60 hover:text-secondary-foreground"
+              : "text-white/60 hover:text-white"
+          }`}
+          aria-label="Close notification"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
       {/* Very Bottom Bar: Copyright */}
