@@ -58,6 +58,12 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Zulqarnain",
+  },
 };
 
 import Navbar from "@/components/Navbar/Navbar";
@@ -74,6 +80,28 @@ export default function RootLayout({
     >
       <head>
         <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0d0e12" />
+        <Script
+          id="pwa-register"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(
+                    function(registration) {
+                      console.log('ServiceWorker registered with scope: ', registration.scope);
+                    },
+                    function(err) {
+                      console.log('ServiceWorker registration failed: ', err);
+                    }
+                  );
+                });
+              }
+            `,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <Script

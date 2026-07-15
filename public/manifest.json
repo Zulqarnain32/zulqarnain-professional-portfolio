@@ -1,0 +1,18 @@
+{
+  "name": "Zulqarnain | MERN & PERN Stack Developer & Software Engineer",
+  "short_name": "Zulqarnain",
+  "description": "Zulqarnain's Professional Developer Portfolio - MERN & PERN Stack Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0e12",
+  "theme_color": "#0d0e12",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/images/developer.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
