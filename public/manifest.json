@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "Zulqarnain | MERN & PERN Stack Developer & Software Engineer",
   "short_name": "Zulqarnain",
   "description": "Zulqarnain's Professional Developer Portfolio - MERN & PERN Stack Developer",
@@ -9,10 +10,43 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/assets/images/developer.jpg",
+      "src": "/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/images/hero.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Zulqarnain Portfolio Desktop Home"
+    },
+    {
+      "src": "/assets/images/developer.jpg",
+      "sizes": "1024x1024",
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "label": "Zulqarnain Portfolio Mobile Home"
     }
   ]
 }
