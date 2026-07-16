@@ -162,7 +162,7 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden border-t border-border/10">
+    <section className="py-12 md:py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden border-t border-border/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-16">
@@ -177,12 +177,12 @@ export default function Projects() {
           </div>
 
           {/* Filtering buttons */}
-          <div className="flex flex-wrap gap-2.5 bg-custom-gray/60 dark:bg-custom-gray/40 border border-border/50 p-1.5 rounded-full self-start md:self-auto backdrop-blur-sm">
+          <div className="flex w-full md:w-auto overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden gap-1.5 sm:gap-2.5 bg-custom-gray/60 dark:bg-custom-gray/40 border border-border/50 p-1.5 rounded-full backdrop-blur-sm whitespace-nowrap">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+                className={`flex-1 md:flex-initial text-center shrink-0 px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
                   activeCategory === category
                     ? "bg-primary dark:bg-secondary text-white dark:text-secondary-foreground shadow-lg"
                     : "text-foreground/75 hover:text-foreground hover:bg-white/10"

@@ -54,7 +54,7 @@ const workData = [
 
 const Journey = () => {
   return (
-    <section className="py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden border-t border-border/10">
+    <section className="py-12 md:py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden border-t border-border/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header Section */}
         <div className="flex flex-col items-center space-y-3 mb-16 text-center">

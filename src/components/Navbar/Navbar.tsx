@@ -21,6 +21,26 @@ const Navbar = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const [visible, setVisible] = React.useState(true);
+  const [lastScrollY, setLastScrollY] = React.useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & passed threshold -> hide
+        setVisible(false);
+      } else {
+        // Scrolling up -> show
+        setVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -43,8 +63,11 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed top-8 left-0 right-0 flex justify-center z-50 pointer-events-none">
-      <nav className="flex items-center justify-between bg-primary backdrop-blur-md px-4 md:px-8 py-3 rounded-full w-full max-w-7xl border border-white/10 shadow-2xl transition-all duration-300 pointer-events-auto">
+    <div className={cn(
+      "fixed top-8 left-0 right-0 flex justify-center z-50 pointer-events-none transition-transform duration-300",
+      visible ? "translate-y-0" : "-translate-y-24"
+    )}>
+      <nav className="flex items-center justify-between bg-primary backdrop-blur-md px-4 md:px-8 py-3 rounded-full w-[90%] lg:w-full max-w-7xl border border-white/10 shadow-2xl transition-all duration-300 pointer-events-auto">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 no-underline group">
           <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center font-extrabold text-secondary-foreground text-lg transition-transform group-hover:scale-110">

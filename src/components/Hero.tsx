@@ -17,6 +17,54 @@ const roles = [
   "PERN Stack Developer"
 ];
 
+const MarqueeBanner = ({ className }: { className?: string }) => (
+  <div className={`relative w-screen left-1/2 -translate-x-1/2 h-20 select-none overflow-hidden z-20 ${className || ""}`}>
+    {/* Green slanted background strip */}
+    <div className="absolute inset-0 bg-primary -rotate-1.5 origin-center h-20"></div>
+    {/* Yellow slanted marquee banner */}
+    <div className="absolute inset-0 bg-secondary rotate-1 shadow-md origin-center flex items-center overflow-hidden h-20">
+      <div className="custom-marquee flex items-center whitespace-nowrap text-secondary-foreground font-bold text-xl sm:text-2xl md:text-3xl tracking-wider py-3">
+        <span className="flex items-center">
+          <span className="mx-6">React</span>
+          <Asterisk />
+          <span className="mx-6">Next.js</span>
+          <Asterisk />
+          <span className="mx-6">Node.js</span>
+          <Asterisk />
+          <span className="mx-6">TypeScript</span>
+          <Asterisk />
+          <span className="mx-6">MongoDB</span>
+          <Asterisk />
+          <span className="mx-6">PostgreSQL</span>
+          <Asterisk />
+          <span className="mx-6">Redux</span>
+          <Asterisk />
+          <span className="mx-6">Tailwind CSS</span>
+          <Asterisk />
+        </span>
+        <span className="flex items-center">
+          <span className="mx-6">React</span>
+          <Asterisk />
+          <span className="mx-6">Next.js</span>
+          <Asterisk />
+          <span className="mx-6">Node.js</span>
+          <Asterisk />
+          <span className="mx-6">TypeScript</span>
+          <Asterisk />
+          <span className="mx-6">MongoDB</span>
+          <Asterisk />
+          <span className="mx-6">PostgreSQL</span>
+          <Asterisk />
+          <span className="mx-6">Redux</span>
+          <Asterisk />
+          <span className="mx-6">Tailwind CSS</span>
+          <Asterisk />
+        </span>
+      </div>
+    </div>
+  </div>
+);
+
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
   const [currentText, setCurrentText] = useState("");
@@ -89,7 +137,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto  w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-stretch z-10 flex-1">
         
         {/* Left Column: Text & Content */}
-        <div className="flex flex-col items-start space-y-6 md:space-y-8 animate-fade-in-left justify-center py-12 order-2 lg:order-1">
+        <div className="flex flex-col items-start space-y-6 md:space-y-8 animate-fade-in-left justify-center py-12 order-3 lg:order-1">
           
           {/* Bounding Box: Hello There! */}
           <div className="relative inline-flex items-center px-6 py-2 border border-border rounded bg-custom-gray/50 shadow-sm font-sans font-medium text-sm md:text-base text-foreground tracking-wide select-none transition-colors duration-300">
@@ -163,54 +211,13 @@ const Hero = () => {
           </div>
         </div>
 
+        {/* Mobile Banner: displays right after the image on mobile, breaking out to full width */}
+        <MarqueeBanner className="lg:hidden order-2 col-span-1 mt-[-3rem]" />
+
       </div>
 
-      {/* Slanted Marquee Banner Container */}
-      <div className="relative left-[-4%] right-[0%] w-[104vw] h-20 select-none overflow-hidden z-20 mt-auto">
-        {/* Green slanted background strip */}
-        <div className="absolute inset-0 bg-primary -rotate-1.5 origin-center h-20"></div>
-        {/* Yellow slanted marquee banner */}
-        <div className="absolute inset-0 bg-secondary rotate-1 shadow-md origin-center flex items-center overflow-hidden h-20">
-          <div className="custom-marquee flex items-center whitespace-nowrap text-secondary-foreground font-bold text-xl sm:text-2xl md:text-3xl tracking-wider py-3">
-            <span className="flex items-center">
-              <span className="mx-6">React</span>
-              <Asterisk />
-              <span className="mx-6">Next.js</span>
-              <Asterisk />
-              <span className="mx-6">Node.js</span>
-              <Asterisk />
-              <span className="mx-6">TypeScript</span>
-              <Asterisk />
-              <span className="mx-6">MongoDB</span>
-              <Asterisk />
-              <span className="mx-6">PostgreSQL</span>
-              <Asterisk />
-              <span className="mx-6">Redux</span>
-              <Asterisk />
-              <span className="mx-6">Tailwind CSS</span>
-              <Asterisk />
-            </span>
-            <span className="flex items-center">
-              <span className="mx-6">React</span>
-              <Asterisk />
-              <span className="mx-6">Next.js</span>
-              <Asterisk />
-              <span className="mx-6">Node.js</span>
-              <Asterisk />
-              <span className="mx-6">TypeScript</span>
-              <Asterisk />
-              <span className="mx-6">MongoDB</span>
-              <Asterisk />
-              <span className="mx-6">PostgreSQL</span>
-              <Asterisk />
-              <span className="mx-6">Redux</span>
-              <Asterisk />
-              <span className="mx-6">Tailwind CSS</span>
-              <Asterisk />
-            </span>
-          </div>
-        </div>
-      </div>
+      {/* Slanted Marquee Banner Container for Desktop */}
+      <MarqueeBanner className="hidden lg:block mt-auto" />
       
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes marquee-scroll {
