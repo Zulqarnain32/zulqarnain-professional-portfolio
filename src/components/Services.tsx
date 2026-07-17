@@ -27,7 +27,7 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <section className="py-12 md:py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden">
+    <section id="services" className="py-12 md:py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">

@@ -162,7 +162,7 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-12 md:py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden border-t border-border/10">
+    <section id="projects" className="py-12 md:py-24 bg-background text-foreground transition-colors duration-300 relative overflow-hidden border-t border-border/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-16">

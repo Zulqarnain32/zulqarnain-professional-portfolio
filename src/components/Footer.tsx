@@ -100,15 +100,15 @@ const Footer = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "About", href: "/about" },
+    { name: "Services", href: "/#services" },
+    { name: "About", href: "/#about" },
     { name: "Projects", href: "/projects" },
     { name: "Blogs", href: "/blogs" },
     // { name: "FAQs", href: "/faqs" },
   ];
 
   return (
-    <footer className="bg-background text-foreground transition-colors duration-300 relative border-t border-border/10">
+    <footer id="contact" className="bg-background text-foreground transition-colors duration-300 relative border-t border-border/10">
       
       {/* Top CTA Row */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-10">

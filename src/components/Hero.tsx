@@ -131,7 +131,7 @@ const Hero = () => {
   }, [currentText, isDeleting, currentIndex, mounted]);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between bg-background text-foreground transition-colors duration-300 pt-32 overflow-hidden px-6 sm:px-8 lg:px-12 pb-0">
+    <section id="home" className="relative min-h-screen flex flex-col justify-between bg-background text-foreground transition-colors duration-300 pt-32 overflow-hidden px-6 sm:px-8 lg:px-12 pb-0">
       {/* Decorative background grids or blur shapes if desired, keeping the primary focus clean */}
       
       <div className="max-w-7xl mx-auto  w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-stretch z-10 flex-1">

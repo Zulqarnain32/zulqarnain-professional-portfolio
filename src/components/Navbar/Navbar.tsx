@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -11,6 +11,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -55,8 +56,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/#services' },
+    { name: 'About', href: '/#about' },
     { name: 'Projects', href: '/projects' },
     { name: 'Blogs', href: '/blogs' },
     // { name: 'Testimonials', href: '/testimonials' },
@@ -122,15 +123,54 @@ const Navbar = () => {
             size={"lg"}
             className="rounded-full bg-white text-primary hover:bg-transparent hover:text-white border-white transition-all duration-300 font-semibold px-6 hidden sm:flex"
           >
-            <Link href="/contact">Contact Me</Link>
+            <Link href="/#contact">Contact Me</Link>
           </Button>
           
-          {/* Mobile Menu Trigger (Placeholder for now) */}
-          <button className="lg:hidden text-white p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          {/* Mobile Menu Trigger */}
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+            aria-label="Toggle Menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Dropdown */}
+      <div className={cn(
+        "absolute top-20 left-1/2 -translate-x-1/2 w-[90%] bg-primary/95 backdrop-blur-lg border border-white/10 rounded-[2rem] p-6 shadow-2xl flex flex-col gap-6 lg:hidden transition-all duration-300 pointer-events-auto",
+        isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-4 pointer-events-none"
+      )}>
+        <ul className="flex flex-col gap-4 list-none m-0 p-0">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <li key={link.name}>
+                <Link 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "text-[#A0A0A0] text-lg font-medium transition-colors hover:text-white block py-2 px-4 rounded-xl",
+                    isActive && "text-[#F4B400] bg-white/5"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="border-t border-white/10 pt-4 flex flex-col gap-4">
+          <Button 
+            variant="outline" 
+            size={"lg"}
+            className="w-full rounded-full bg-white text-primary hover:bg-transparent hover:text-white border-white transition-all duration-300 font-semibold px-6"
+          >
+            <Link href="/#contact" onClick={() => setIsOpen(false)} className="w-full text-center">Contact Me</Link>
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
