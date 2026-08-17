@@ -67,6 +67,7 @@ export const metadata: Metadata = {
 };
 
 import Navbar from "@/components/Navbar/Navbar";
+import AIChatWidget from "@/components/AIChatWidget";
 
 export default function RootLayout({
   children,
@@ -122,6 +123,7 @@ export default function RootLayout({
         />
         <Navbar />
         <main className="flex-1">{children}</main>
+        <AIChatWidget />
       </body>
     </html>
   );
