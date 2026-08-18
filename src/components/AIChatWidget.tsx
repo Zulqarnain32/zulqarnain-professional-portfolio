@@ -9,6 +9,7 @@ import {
   User,
   RotateCcw,
   AlertCircle,
+  ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +27,126 @@ const SUGGESTED_QUESTIONS = [
   "Tell me about GlintPro.",
   "What is his backend experience?",
 ];
+
+// Helper to parse inline markdown (bold, links, code) without leaving raw syntax
+function parseInlineStyles(text: string): React.ReactNode[] {
+  const regex = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\)|`[^`]+`)/g;
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      const boldText = part.slice(2, -2).trim();
+      return (
+        <strong key={index} className="font-semibold text-foreground">
+          {boldText}
+        </strong>
+      );
+    }
+    if (part.startsWith("[") && part.includes("](") && part.endsWith(")")) {
+      const match = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
+      if (match) {
+        const linkText = match[1];
+        const linkUrl = match[2];
+        return (
+          <a
+            key={index}
+            href={linkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-secondary hover:underline font-semibold inline-flex items-center gap-0.5 mx-0.5"
+          >
+            <span>{linkText}</span>
+            <ExternalLink className="w-3 h-3 inline-block ml-0.5 opacity-80" />
+          </a>
+        );
+      }
+    }
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code
+          key={index}
+          className="bg-black/10 dark:bg-white/10 text-foreground px-1.5 py-0.5 rounded text-[11px] font-mono"
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    return part;
+  });
+}
+
+// Clean custom response formatter that renders colorful yellow headings and styled round bullets
+function renderFormattedResponse(content: string): React.ReactNode {
+  const lines = content.split("\n");
+  const elements: React.ReactNode[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    const trimmed = rawLine.trim();
+
+    if (!trimmed) {
+      continue;
+    }
+
+    // Check if line is a header (has # symbols or is plain uppercase title)
+    const isMarkdownHeader = /^#{1,6}\s+/.test(trimmed);
+    const strippedHeader = trimmed
+      .replace(/^#{1,6}\s+/, "")
+      .replace(/^\*\*|\*\*$/g, "")
+      .replace(/:$/, "")
+      .trim();
+
+    const isUppercaseHeader =
+      /^[A-Z0-9\s&/—–\-]{3,35}$/.test(strippedHeader) &&
+      !trimmed.startsWith("-") &&
+      !trimmed.startsWith("*") &&
+      !trimmed.startsWith("•");
+
+    if (isMarkdownHeader || isUppercaseHeader) {
+      elements.push(
+        <div
+          key={`header-${i}`}
+          className="text-secondary font-bold text-xs sm:text-sm uppercase tracking-wider mt-3.5 mb-1.5 first:mt-0 font-sans"
+        >
+          {strippedHeader}
+        </div>
+      );
+      continue;
+    }
+
+    // Check if line is a bullet item (starts with -, *, or •)
+    const isBullet =
+      /^[-*•]\s+/.test(trimmed) || /^\s+[-*•]\s+/.test(rawLine);
+
+    if (isBullet) {
+      const bulletContent = trimmed.replace(/^[-*•]\s+/, "");
+      elements.push(
+        <div
+          key={`bullet-${i}`}
+          className="flex items-start gap-2 text-foreground/90 my-1 pl-1"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary shrink-0 mt-1.5" />
+          <span className="leading-relaxed flex-1 text-xs sm:text-sm">
+            {parseInlineStyles(bulletContent)}
+          </span>
+        </div>
+      );
+      continue;
+    }
+
+    // Regular paragraph
+    elements.push(
+      <p
+        key={`p-${i}`}
+        className="mb-2 last:mb-0 leading-relaxed text-foreground/90 font-normal text-xs sm:text-sm"
+      >
+        {parseInlineStyles(trimmed)}
+      </p>
+    );
+  }
+
+  return <div className="space-y-0.5">{elements}</div>;
+}
 
 export default function AIChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -165,7 +286,7 @@ export default function AIChatWidget() {
       {/* Chat Window / Drawer Container */}
       <div
         className={cn(
-          "fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-[420px] max-w-full sm:max-w-[calc(100vw-3rem)] h-[90vh] sm:h-[620px] sm:max-h-[85vh] flex flex-col bg-background dark:bg-[#0f1410] border sm:border-border sm:rounded-3xl shadow-2xl transition-all duration-300 overflow-hidden",
+          "fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-[440px] max-w-full sm:max-w-[calc(100vw-3rem)] h-[90vh] sm:h-[630px] sm:max-h-[85vh] flex flex-col bg-background dark:bg-[#0f1410] border sm:border-border sm:rounded-3xl shadow-2xl transition-all duration-300 overflow-hidden",
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 translate-y-12 pointer-events-none"
@@ -266,13 +387,18 @@ export default function AIChatWidget() {
 
                 <div
                   className={cn(
-                    "max-w-[82%] rounded-2xl px-4 py-3 text-xs sm:text-sm leading-relaxed shadow-sm",
+                    "max-w-[85%] rounded-2xl px-4 py-3 shadow-sm",
                     isUser
-                      ? "bg-primary text-white rounded-br-none"
+                      ? "bg-primary text-white rounded-br-none font-medium text-xs sm:text-sm leading-relaxed"
                       : "bg-custom-gray dark:bg-[#182019] text-foreground border border-border/60 rounded-bl-none"
                   )}
                 >
-                  <div className="whitespace-pre-wrap break-words">{msg.content}</div>
+                  {isUser ? (
+                    <div className="whitespace-pre-wrap break-words">{msg.content}</div>
+                  ) : (
+                    <div>{renderFormattedResponse(msg.content)}</div>
+                  )}
+
                   <div
                     className={cn(
                       "text-[10px] mt-1.5 opacity-60 text-right select-none",
@@ -350,9 +476,7 @@ export default function AIChatWidget() {
               <Send className="w-4 h-4" />
             </button>
           </form>
-          <div className="text-[10px] text-center text-foreground/40 mt-2 select-none">
-            Powered by Gemini • Strictly limited to Zulqarnain&apos;s portfolio data
-          </div>
+       
         </div>
       </div>
     </>
