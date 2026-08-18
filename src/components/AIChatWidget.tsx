@@ -53,10 +53,10 @@ function parseInlineStyles(text: string): React.ReactNode[] {
             href={linkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-secondary hover:underline font-semibold inline-flex items-center gap-0.5 mx-0.5"
+            className="text-[#344C36] dark:text-[#6fa874] hover:underline font-semibold inline-flex items-center gap-0.5 mx-0.5"
           >
             <span>{linkText}</span>
-            <ExternalLink className="w-3 h-3 inline-block ml-0.5 opacity-80" />
+            <ExternalLink className="w-3 h-3 inline-block ml-0.5 opacity-85" />
           </a>
         );
       }
@@ -253,10 +253,25 @@ export default function AIChatWidget() {
     setInputMessage("");
   };
 
+  // Lock background scroll when chat is open on mobile
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <>
       {/* Floating Circular Launcher Button */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center">
+      <div
+        className="fixed bottom-6 right-6 z-[99999] flex items-center"
+        style={{ zIndex: 99999 }}
+      >
         {!isOpen && (
           <div className="relative group flex items-center">
             {/* Tooltip on Hover */}
@@ -283,13 +298,14 @@ export default function AIChatWidget() {
         )}
       </div>
 
-      {/* Chat Window / Drawer Container */}
+      {/* Fullscreen Mobile / Floating Desktop Chat Window Container */}
       <div
+        style={{ zIndex: 99999 }}
         className={cn(
-          "fixed bottom-0 right-0 sm:bottom-6 sm:right-6 z-50 w-full sm:w-[440px] max-w-full sm:max-w-[calc(100vw-3rem)] h-[90vh] sm:h-[630px] sm:max-h-[85vh] flex flex-col bg-background dark:bg-[#0f1410] border sm:border-border sm:rounded-3xl shadow-2xl transition-all duration-300 overflow-hidden",
+          "fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-[99999] w-full h-full sm:w-[440px] sm:h-[630px] sm:max-h-[85vh] flex flex-col bg-background dark:bg-[#0f1410] border-0 sm:border sm:border-border rounded-none sm:rounded-3xl shadow-2xl transition-all duration-300 overflow-hidden",
           isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-12 pointer-events-none"
+            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 scale-95 translate-y-8 pointer-events-none"
         )}
         role="dialog"
         aria-label="AI Portfolio Assistant"
@@ -337,8 +353,8 @@ export default function AIChatWidget() {
         <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 [scrollbar-width:thin]">
           {/* Empty State */}
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full text-center px-3 py-6 space-y-4 animate-fade-in-up">
-              <div className="w-14 h-14 rounded-2xl bg-secondary/15 border border-secondary/30 flex items-center justify-center text-secondary">
+            <div className="flex flex-col items-center text-center px-3 py-4 space-y-4 animate-fade-in-up">
+              <div className="w-14 h-14 rounded-2xl bg-secondary/15 border border-secondary/30 flex items-center justify-center text-secondary shrink-0 mt-1">
                 <Sparkles className="w-7 h-7" />
               </div>
               <div className="space-y-1">
@@ -380,8 +396,8 @@ export default function AIChatWidget() {
                 className={cn("flex gap-2.5 items-end", isUser ? "justify-end" : "justify-start")}
               >
                 {!isUser && (
-                  <div className="w-7 h-7 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center shrink-0 text-xs font-bold shadow-sm mb-1">
-                    <Bot className="w-3.5 h-3.5" />
+                  <div className="w-9 h-9 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center shrink-0 shadow-sm mb-1">
+                    <Bot className="w-5 h-5" />
                   </div>
                 )}
 
@@ -398,20 +414,11 @@ export default function AIChatWidget() {
                   ) : (
                     <div>{renderFormattedResponse(msg.content)}</div>
                   )}
-
-                  <div
-                    className={cn(
-                      "text-[10px] mt-1.5 opacity-60 text-right select-none",
-                      isUser ? "text-white/80" : "text-foreground/60"
-                    )}
-                  >
-                    {msg.timestamp}
-                  </div>
                 </div>
 
                 {isUser && (
-                  <div className="w-7 h-7 rounded-full bg-primary/20 dark:bg-primary/40 text-primary dark:text-foreground flex items-center justify-center shrink-0 text-xs font-bold mb-1">
-                    <User className="w-3.5 h-3.5" />
+                  <div className="w-9 h-9 rounded-full bg-primary/20 dark:bg-primary/40 text-primary dark:text-foreground flex items-center justify-center shrink-0 mb-1">
+                    <User className="w-5 h-5" />
                   </div>
                 )}
               </div>
@@ -421,8 +428,8 @@ export default function AIChatWidget() {
           {/* Loading Typing Indicator */}
           {isLoading && (
             <div className="flex gap-2.5 items-end justify-start">
-              <div className="w-7 h-7 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center shrink-0 text-xs font-bold shadow-sm mb-1">
-                <Bot className="w-3.5 h-3.5" />
+              <div className="w-9 h-9 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center shrink-0 shadow-sm mb-1">
+                <Bot className="w-5 h-5" />
               </div>
               <div className="bg-custom-gray dark:bg-[#182019] border border-border/60 rounded-2xl rounded-bl-none px-4 py-3 text-foreground flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-secondary animate-bounce [animation-delay:-0.3s]" />

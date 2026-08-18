@@ -27,6 +27,9 @@ const Navbar = () => {
 
   React.useEffect(() => {
     const handleScroll = () => {
+      // Don't hide navbar if mobile menu is open
+      if (isOpen) return;
+
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & passed threshold -> hide
@@ -40,7 +43,25 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, isOpen]);
+
+  // Lock background scroll when mobile menu is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  // Auto-close menu on route change
+  React.useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -65,10 +86,10 @@ const Navbar = () => {
 
   return (
     <div className={cn(
-      "fixed top-8 left-0 right-0 flex justify-center z-50 pointer-events-none transition-transform duration-300",
+      "fixed top-0 md:top-8 left-0 right-0 flex justify-center z-50 pointer-events-none transition-transform duration-300",
       visible ? "translate-y-0" : "-translate-y-24"
     )}>
-      <nav className="flex items-center justify-between bg-primary backdrop-blur-md px-4 md:px-8 py-3 rounded-full w-[90%] lg:w-full max-w-7xl border border-white/10 shadow-2xl transition-all duration-300 pointer-events-auto">
+      <nav className="flex items-center justify-between bg-primary backdrop-blur-md px-4 md:px-8 py-3 rounded-none md:rounded-full w-full md:w-[90%] lg:w-full max-w-7xl border-b md:border border-white/10 shadow-2xl transition-all duration-300 pointer-events-auto">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 no-underline group">
           <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center font-extrabold text-secondary-foreground text-lg transition-transform group-hover:scale-110">
@@ -139,7 +160,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       <div className={cn(
-        "absolute top-20 left-1/2 -translate-x-1/2 w-[90%] bg-primary/95 backdrop-blur-lg border border-white/10 rounded-[2rem] p-6 shadow-2xl flex flex-col gap-6 lg:hidden transition-all duration-300 pointer-events-auto",
+        "absolute top-full md:top-20 left-0 md:left-1/2 md:-translate-x-1/2 w-full md:w-[90%] bg-primary/95 backdrop-blur-lg border-b md:border border-white/10 rounded-none md:rounded-[2rem] p-6 shadow-2xl flex flex-col gap-6 lg:hidden transition-all duration-300 pointer-events-auto",
         isOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-4 pointer-events-none"
       )}>
         <ul className="flex flex-col gap-4 list-none m-0 p-0">
