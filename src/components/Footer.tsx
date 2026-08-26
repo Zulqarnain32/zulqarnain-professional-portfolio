@@ -114,7 +114,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-12 border-b border-border/30">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans">
-            Let&apos;s <span className="text-secondary">Connect</span> there
+            Let&apos;s <span className="text-secondary italic mr-2">Connect</span> there
           </h2>
           
           {/* Custom Overlap Pill Button */}

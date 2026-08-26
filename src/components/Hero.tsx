@@ -150,12 +150,12 @@ const Hero = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-[2.6rem] sm:text-5xl md:text-4xl lg:text-[3.8rem] font-extrabold text-foreground leading-[1.1] tracking-tight font-sans">
+          <h1 className="text-[2.6rem] sm:text-5xl md:text-4xl lg:text-[3.8rem] text-primary  font-extrabold leading-[1.1] tracking-tight font-sans">
             I&apos;m{" "}
-            <span className="relative inline-block text-secondary">
+            <span className="relative inline-block text-secondary italic">
               Zulqarnain,
               {/* Offset underline matching the premium reference vibe */}
-              <span className="hidden lg:block absolute bottom-[4px] left-0 w-full h-[5px] bg-secondary rounded-full"></span>
+              <span className="hidden lg:block absolute bottom-[6px] left-0 w-full h-[5px] bg-secondary rounded-full"></span>
             </span>
             <br />
             {mounted ? (
