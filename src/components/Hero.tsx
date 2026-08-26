@@ -150,7 +150,7 @@ const Hero = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-[2.6rem] sm:text-5xl md:text-4xl lg:text-[3.8rem] text-primary  font-extrabold leading-[1.1] tracking-tight font-sans">
+          <h1 className="text-[2.6rem] sm:text-5xl md:text-4xl lg:text-[3.8rem] text-primary font-extrabold md:font-bold 2xl:font-extrabold leading-[1.1] tracking-tight font-sans">
             I&apos;m{" "}
             <span className="relative inline-block text-secondary italic">
               Zulqarnain,

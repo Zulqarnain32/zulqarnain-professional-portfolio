@@ -58,11 +58,11 @@ const Journey = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Header Section */}
         <div className="flex flex-col items-center space-y-3 mb-16 text-center">
-          <div className="flex items-center text-lg font-semibold tracking-wider text-primary dark:text-foreground/80 uppercase">
+          <div className="flex items-center text-sm font-semibold tracking-wider text-primary dark:text-foreground/80 uppercase">
             <span className="w-6 h-0.5 bg-secondary mr-3 rounded-full"></span>
             Education & Work
           </div>
-          <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans ">
+          <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans">
             My <span className="text-secondary italic">Academic and <div className="mt-2"></div>   Professional</span> Journey
           </div>
         </div>
@@ -77,7 +77,7 @@ const Journey = () => {
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shadow-md shadow-secondary/10">
                 <GraduationIcon />
               </div>
-              <h3 className="text-xl md:text-2xl font-extrabold tracking-tight text-foreground font-sans">
+              <h3 className="text-xl md:text-2xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight text-foreground font-sans">
                 Education
               </h3>
             </div>
@@ -110,7 +110,7 @@ const Journey = () => {
               <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shadow-md shadow-secondary/10">
                 <BriefcaseIcon />
               </div>
-              <h3 className="text-xl md:text-2xl font-extrabold tracking-tight text-foreground font-sans">
+              <h3 className="text-xl md:text-2xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight text-foreground font-sans">
                 Work Experience
               </h3>
             </div>

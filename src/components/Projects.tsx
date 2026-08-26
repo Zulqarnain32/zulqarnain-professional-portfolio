@@ -171,7 +171,7 @@ export default function Projects() {
               <span className="w-6 h-0.5 bg-secondary mr-3 rounded-full"></span>
               Projects
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans">
               Featured <span className="text-secondary">Works</span> & Demos
             </h2>
           </div>

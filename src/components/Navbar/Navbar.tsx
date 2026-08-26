@@ -92,7 +92,7 @@ const Navbar = () => {
       <nav className="flex items-center justify-between bg-primary backdrop-blur-md px-4 md:px-8 py-3 rounded-none md:rounded-full w-full md:w-[90%] lg:w-full max-w-7xl border-b md:border border-white/10 shadow-2xl transition-all duration-300 pointer-events-auto">
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 no-underline group">
-          <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center font-extrabold text-secondary-foreground text-lg transition-transform group-hover:scale-110">
+          <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center font-extrabold md:font-bold 2xl:font-extrabold text-secondary-foreground text-lg transition-transform group-hover:scale-110">
             Z
           </div>
           <span className="text-white text-xl md:text-2xl font-semibold tracking-tighter">

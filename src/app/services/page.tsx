@@ -131,7 +131,7 @@ export default function ServicesPage() {
               <Sparkles className="w-4 h-4 mr-2" />
               Professional Services
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans leading-tight">
               My Premium <span className="text-secondary">Development</span>{" "}
               Services
             </h1>
@@ -197,7 +197,7 @@ export default function ServicesPage() {
       {/* CTA section */}
       <section className="bg-custom-gray/20 border-t border-border/10 py-16">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight">
             Have a project in mind?
           </h2>
           <p className="text-foreground/70 max-w-xl mx-auto">

@@ -96,7 +96,7 @@ export default function BlogsPage() {
             <span className="text-secondary font-bold text-sm tracking-widest uppercase bg-secondary/10 px-4 py-1.5 rounded-full border border-secondary/15">
               Insights & Knowledge
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans leading-tight">
               My Technical <span className="text-secondary">Blog</span>
             </h1>
             <p className="text-foreground/75 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl font-normal">
@@ -233,7 +233,7 @@ export default function BlogsPage() {
 
             {/* Modal Body */}
             <div className="py-6 space-y-6 flex-1">
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-sans text-foreground">
+              <h2 className="text-2xl sm:text-3xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans text-foreground">
                 {selectedBlog.title}
               </h2>
               

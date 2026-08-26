@@ -33,12 +33,12 @@ const Services = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
           <div className="flex flex-col space-y-3">
             {/* Sub-label */}
-            <div className="flex items-center text-lg font-semibold  text-primary dark:text-foreground/80 ">
+            <div className="flex items-center text-sm font-semibold uppercase text-primary dark:text-foreground/80 ">
               <span className="w-6 h-0.5 bg-secondary mr-3 rounded-full"></span>
               Services
             </div>
             {/* Main Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans">
               <span className="text-secondary italic mr-1">Services</span> I Provide
             </h2>
           </div>

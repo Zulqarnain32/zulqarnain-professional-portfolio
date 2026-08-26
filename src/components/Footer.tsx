@@ -113,7 +113,7 @@ const Footer = () => {
       {/* Top CTA Row */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-20 pb-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-12 border-b border-border/30">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans">
             Let&apos;s <span className="text-secondary italic mr-2">Connect</span> there
           </h2>
           
@@ -141,7 +141,7 @@ const Footer = () => {
           {/* Column 1: Brand, Bio & Socials */}
           <div className="flex flex-col space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-extrabold text-secondary-foreground text-lg shadow-md shadow-secondary/15">
+              <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-extrabold md:font-bold 2xl:font-extrabold text-secondary-foreground text-lg shadow-md shadow-secondary/15">
                 Z
               </div>
               <span className="text-2xl font-bold tracking-tight">

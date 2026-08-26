@@ -117,7 +117,7 @@ const Tools = () => {
             <span className="w-6 h-0.5 bg-secondary mr-3 rounded-full"></span>
             My Tech Stack
           </div>
-          <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight font-sans">
+          <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold md:font-bold 2xl:font-extrabold tracking-tight font-sans">
             <div className="text-secondary italic">Exploring the Tools</div>
 
             <div className="block mt-3">Behind My Code</div>
