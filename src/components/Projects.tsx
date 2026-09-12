@@ -232,7 +232,7 @@ export default function Projects() {
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 rounded-md text-xs font-semibold bg-white dark:bg-background border border-border/40 text-foreground/80"
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-secondary text-secondary-foreground transition-colors duration-200"
                     >
                       {tag}
                     </span>
